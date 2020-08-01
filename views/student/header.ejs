@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- all the meta tags -->
+    <meta charset="utf-8" />
+    <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+    <meta content="Creativeitem" name="author" />
+<link rel="shortcut icon" href="img/favicon.png">
+    <!-- all the css files -->
+    <!-- third party css -->
+<link href="backend/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+<link href="backend/css/vendor/fullcalendar.min.css" rel="stylesheet" type="text/css" />
+<link href="css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" type="text/css" href="css/style.css">
+<link href="backend/css/vendor/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="backend/css/vendor/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="backend/css/vendor/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="backend/css/vendor/select.bootstrap4.css" rel="stylesheet" type="text/css" />
+<link href="backend/css/vendor/summernote-bs4.css" rel="stylesheet" type="text/css" />
+<link href="backend/css/vendor/simplemde.min.css" rel="stylesheet" type="text/css" />
+<!-- third party css end -->
+
+
+<!-- App css -->
+<link href="backend/css/icons.min.css" rel="stylesheet" type="text/css" />
+<link href="backend/css/app.min.css" rel="stylesheet" type="text/css" />
+
+<!-- CUSTOM CSS FILES -->
+<link href="backend/css/custom.css" rel="stylesheet" type="text/css" />
+<link href="backend/css/content-placeholder.css" rel="stylesheet" type="text/css" />
+<link href="backend/css/addon.css" rel="stylesheet" type="text/css" />
+
+<!--Notify for ajax-->
+<link rel="stylesheet" href="ajax/libs/toastr.js/latest/toastr.min.css">
+
+<!--Jquery-->
+<script src="ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css"></head>
+<body data-layout="detached">
+    <!-- HEADER -->
+    <!-- Topbar Start -->
+<div class="navbar-custom topnav-navbar topnav-navbar-dark">
+    <div class="container-fluid">
+
+        <!-- LOGO -->
+        <a href="" class="topnav-logo" style = "min-width: unset;">
+            <span class="topnav-logo-lg">
+                <img src="img/favicon.png" alt="" height="40">
+            </span>
+        </a>
+        <ul class="list-unstyled topbar-right-menu float-right mb-0">     
+            <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" href="/logout" role="button">
+            <span>
+                <span class="account-user-name">Logout</span>
+                
+            </span>
+            </a>
+        </ul>
+        <ul class="list-unstyled topbar-right-menu float-right mb-0">
+            <a class="nav-link dropdown-toggle nav-user arrow-none mr-0" href="/stprofile" role="button">
+                <span class="account-user-avatar">
+                    <img src="img/<%= image %>" alt="user-image" class="rounded-circle">
+                </span>
+                <span>
+                    <span class="account-user-name"><%= name%></span>
+                    <span class="account-position">Student</span>
+                    
+                </span>
+            </a>
+        </ul>
+</div>
+</div>
+<div class="container-fluid">
+<div class="wrapper">
+
+<div class="left-side-menu left-side-menu-detached content-main">
+
+    <div class="leftbar-user">
+        <a href="javascript: void(0);">
+        <img src="img/<%= image %>" alt="user-image" height="42" class="rounded-circle shadow-sm">
+                <span class="leftbar-user-name"><%= name %></span>
+        </a>
+    </div>
+  <!--- Sidemenu -->
+    <ul class="metismenu side-nav side-nav-light">
+        <li class="side-nav-item">
+            <a href="/stdash" class="side-nav-link">
+            <i class="dripicons-meter"></i><span> Dashboard </span></a>
+        </li>
+        <li class="side-nav-item"><a href="/teacher" class="side-nav-link"><i class="dripicons-user"></i>
+            <span>Teacher</span>
+            <span class="menu-arrow"></span></a>
+        </li>
+        <li class="side-nav-item"><a href="/routine" class="side-nav-link">
+            <i class="dripicons-store"></i>
+            <span>Class Routine</span></a>
+        </li>
+        <li class="side-nav-item"><a href="/subject" class="side-nav-link">
+            <i class="dripicons-store"></i>
+            <span>Subject</span></a>
+        </li>
+        <li class="side-nav-item"><a href="/syllabus" class="side-nav-link">
+            <i class="dripicons-store"></i>
+            <span>Syllabus</span></a>
+        </li>
+        <li class="side-nav-item">
+            <a href="/grade" class="side-nav-link">
+            <i class="dripicons-to-do"></i><span>Grades</span></a>
+        </li>
+        <li class="side-nav-item">
+            <a href="/found" class="side-nav-link">
+            <i class="dripicons-to-do"></i><span>Lost & found</span></a>
+        </li>
+    </ul>
+  <!-- End Sidebar -->
+  <div class="clearfix"></div>
+  <!-- Sidebar -left -->
+
+</div>
+<!-- Left Sidebar End -->

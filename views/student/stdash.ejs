@@ -1,0 +1,79 @@
+<%- include('header')%>
+
+            <!-- PAGE CONTAINER-->
+            <div class="content-page">
+                <div class="content content-main">
+                    <div class="loadings hidden"></div>
+                    <!-- BEGIN PlACE PAGE CONTENT HERE -->
+                    <!-- start page title -->
+<div class="row ">
+  <div class="col-xl-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="page-title"> <i class="mdi mdi-view-dashboard title_icon"></i> Dashboard </h4>
+      </div> <!-- end card body-->
+    </div> <!-- end card -->
+  </div><!-- end col-->
+</div>
+<!-- end page title -->
+<div class="row">
+    <div class="col-12 event_calendar_content">
+        <div class="row">
+	<div class="col-md-6">
+		<div class="card">
+			<div class="card-body">
+              <div class="items">
+                <table id="basic-datatable" class="table table-striped dt-responsive nowrap" width="100%">
+                  <thead>
+                    <tr style="background-color: #313a46; color: #ababab;">
+                      <th>Notifications</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for(var i=0; i < data3.length; i++){ %>
+                      <tr>
+                        <td><%= data3[i].not_from %><br><%= data3[i].not_msg %></td>
+                      </tr>
+                     <% }%>  
+                  </tbody>
+                </table>
+              </div>      
+			</div>
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="card">
+			<div class="card-body">
+				<div class="items">
+					<table id="basic-datatable" class="table table-striped dt-responsive nowrap" width="100%">
+					  <thead>
+						<tr style="background-color: #313a46; color: #ababab;">
+							<th>Event Title</th>
+							<th>From</th>
+							<th>To</th>
+						</tr>
+					  </thead>
+					<tbody>
+						<% if (data2) { %>
+							<% data2.forEach(function(user2){ %>
+						<tr>
+							<td><%= user2.title %></td>
+							<td><%= user2.starting %></td>
+							<td><%= user2.ending %></td>
+						</tr>
+						<% }) %>
+                        <% } %> 
+					</tbody>
+				    </table>
+			    </div>
+			</div>
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+    
+    <%- include('footer')%>
