@@ -1,14 +1,16 @@
 //variable declare
 var express = require('express');
-//var mysql = require('mysql');
-//var session = require('express-session');
+var mysql = require('mysql');
+var session = require('express-session');
 var router = express.Router();
 
 router.get('/', function(req, res){
 
 	if(req.session.user != null){
-		res.render('student/stdash',{session:req.session.user});
+		console.log("sagol");
+		res.render('student/stdash');
 	}else{
+		console.log("sagol");
 		res.redirect('/studentlogin');
 	}
 });

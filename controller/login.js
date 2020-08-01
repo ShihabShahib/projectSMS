@@ -27,9 +27,12 @@ router.post('/', function(req, res){
 	});
 
 	var sql = "select * from student where email='"+req.body.email+"' and password='"+req.body.password+"'";
+	console.log("var sql");
 	connection.query(sql, function(error, results){
+		console.log("ssssssssssss");
 		//if(results[0].email == req.body.email && results[0].password == req.body.password){
 		if(results.length>0){
+			console.log("goru");
 			req.session.user = req.body.email;
 			req.session.name = req.body.s_name;
 			req.session.image = req.body.image;
@@ -37,6 +40,7 @@ router.post('/', function(req, res){
 			res.redirect('/stdash');
 		}
 		else{
+			console.log("hash");
 			//res.send('invalid username or password');
 			req.session.destroy();
                 return res.redirect('/login');
