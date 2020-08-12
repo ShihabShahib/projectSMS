@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 12, 2020 at 05:05 PM
+-- Generation Time: Aug 12, 2020 at 06:15 PM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.2.31
 
@@ -84,22 +84,6 @@ CREATE TABLE `consult` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `download`
---
-
-CREATE TABLE `download` (
-  `download_id` int(20) NOT NULL,
-  `filename` varchar(50) NOT NULL,
-  `directory` varchar(100) NOT NULL,
-  `date` date NOT NULL,
-  `class_id` int(20) NOT NULL,
-  `section_id` int(11) NOT NULL,
-  `subject_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `event`
 --
 
@@ -143,7 +127,7 @@ CREATE TABLE `grade` (
 
 CREATE TABLE `login` (
   `id` int(20) NOT NULL,
-  `userid` varchar(50) NOT NULL,
+  `user_id` varchar(50) NOT NULL,
   `userpassword` varchar(100) NOT NULL,
   `usertype` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -218,7 +202,7 @@ INSERT INTO `notice` (`notice_id`, `noticedate`, `class_id`, `subject_id`, `sect
 
 CREATE TABLE `parent` (
   `id` int(11) NOT NULL,
-  `parent_id` int(20) NOT NULL,
+  `parent_id` varchar(50) NOT NULL,
   `student_id` int(20) NOT NULL,
   `parentname` varchar(50) NOT NULL,
   `parentemail` varchar(50) NOT NULL,
@@ -301,6 +285,7 @@ INSERT INTO `routine` (`routine_id`, `class_id`, `section_id`, `teacher_id`, `st
 
 CREATE TABLE `schooladmin` (
   `id` int(11) NOT NULL,
+  `schooladmin_id` varchar(50) NOT NULL,
   `schooladminname` varchar(50) NOT NULL,
   `schooladminemail` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -356,7 +341,7 @@ CREATE TABLE `staff` (
 
 CREATE TABLE `student` (
   `id` int(20) NOT NULL,
-  `student_id` int(20) NOT NULL,
+  `student_id` varchar(50) NOT NULL,
   `class_id` int(20) NOT NULL,
   `section_id` int(20) NOT NULL,
   `studentname` varchar(50) NOT NULL,
@@ -383,7 +368,7 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`id`, `student_id`, `class_id`, `section_id`, `studentname`, `studentemail`, `studentaddress`, `studentimage`, `studentbloodgroup`, `studentfathername`, `studentmothername`, `guardiannumber`, `admissionclass`, `studentdob`, `studentgender`, `studentreligion`, `admissiondate`, `disorder`, `allergic`, `heartproblem`, `otherdisease`) VALUES
-(1, 1608001, 8, 1, 'student001', 'student001@student.ac.bd', '58/2 A, Mirpur,Dhaka', 'student.jpg', 'B+', 'Mr. Rahman', 'Mrs. Rahman', 801935245, 'One', '5/08/2004', 'Male', 'Muslim', '2012-01-01', 'No', 'No', 'No', 'No');
+(1, '1608001', 8, 1, 'student001', 'student001@student.ac.bd', '58/2 A, Mirpur,Dhaka', 'student.jpg', 'B+', 'Mr. Rahman', 'Mrs. Rahman', 801935245, 'One', '5/08/2004', 'Male', 'Muslim', '2012-01-01', 'No', 'No', 'No', 'No');
 
 -- --------------------------------------------------------
 
@@ -421,7 +406,7 @@ INSERT INTO `subject` (`subject_id`, `subjectname`, `class_id`) VALUES
 
 CREATE TABLE `superadmin` (
   `id` int(11) NOT NULL,
-  `superadmin_id` int(20) NOT NULL,
+  `superadmin_id` varchar(50) NOT NULL,
   `superadminname` varchar(50) NOT NULL,
   `superadminemail` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -456,7 +441,7 @@ INSERT INTO `syllabus` (`syllabus_id`, `title`, `directory`, `subject_id`, `sect
 
 CREATE TABLE `teacher` (
   `id` int(11) NOT NULL,
-  `teacher_id` int(20) NOT NULL,
+  `teacher_id` varchar(50) NOT NULL,
   `teachername` varchar(50) NOT NULL,
   `teacheremail` varchar(50) NOT NULL,
   `teacherdesignation` varchar(50) NOT NULL,
@@ -476,16 +461,30 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`id`, `teacher_id`, `teachername`, `teacheremail`, `teacherdesignation`, `teacherdepartment`, `teacheraddress`, `teacherdob`, `teachergender`, `teacherreligion`, `teacherjoiningdate`, `teacherfathername`, `teachermothername`, `subject_id`) VALUES
-(1, 8101, 'Mr. Teacher Bangla', 'teacherB@gmail.com', 'Lecturer', 'Bangla', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Khan', 'Mrs. Khan', 81),
-(2, 8102, 'Teacher English', 'teacherE@gmail.com', 'Lecturer', 'English', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Female', 'Muslim', '2010-01-01', 'Mr. Rahman', 'Mrs. Rahman', 82),
-(3, 8103, 'Mr. Teacher Math', 'teacherM@gmail.com', 'Lecturer', 'Math', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Alam', 'Mrs. Alam', 83),
-(4, 8104, 'Mr. Teacher Science', 'teacherS@gmail.com', 'Lecturer', 'Science', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Chowdhury', 'Mrs. Chowdhury', 84),
-(5, 8105, 'Teacher Sociology', 'teacherSS@gmail.com', 'Lecturer', 'Sociology', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Female', 'Muslim', '2010-01-01', 'Mr. Haque', 'Mrs. Haque', 85),
-(6, 8106, 'Mr. Teacher Religion', 'teacherR@gmail.com', 'Lecturer', 'Religion', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Kabir', 'Mrs. Kabir', 86),
-(7, 8107, 'Mr. Teacher ICT', 'teacherICT@gmail.com', 'Lecturer', 'ICT', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Islam', 'Mrs. Islam', 87),
-(8, 8108, 'Mr. Teacher World Knowledge', 'teacherWK@gmail.com', 'Lecturer', 'World Knowledge', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Khan', 'Mrs. Khan', 88),
-(9, 8109, 'Teacher Home Economics', 'teacherHE@gmail.com', 'Lecturer', 'Home Economics', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Female', 'Muslim', '2010-01-01', 'Mr. Rahman', 'Mrs. Rahman', 89),
-(10, 8100, 'Mr. Teacher Agriculture', 'teacherA@gmail.com', 'Lecturer', 'Agriculture', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Alam', 'Mrs. Alam', 80);
+(1, '8101', 'Mr. Teacher Bangla', 'teacherB@gmail.com', 'Lecturer', 'Bangla', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Khan', 'Mrs. Khan', 81),
+(2, '8102', 'Teacher English', 'teacherE@gmail.com', 'Lecturer', 'English', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Female', 'Muslim', '2010-01-01', 'Mr. Rahman', 'Mrs. Rahman', 82),
+(3, '8103', 'Mr. Teacher Math', 'teacherM@gmail.com', 'Lecturer', 'Math', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Alam', 'Mrs. Alam', 83),
+(4, '8104', 'Mr. Teacher Science', 'teacherS@gmail.com', 'Lecturer', 'Science', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Chowdhury', 'Mrs. Chowdhury', 84),
+(5, '8105', 'Teacher Sociology', 'teacherSS@gmail.com', 'Lecturer', 'Sociology', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Female', 'Muslim', '2010-01-01', 'Mr. Haque', 'Mrs. Haque', 85),
+(6, '8106', 'Mr. Teacher Religion', 'teacherR@gmail.com', 'Lecturer', 'Religion', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Kabir', 'Mrs. Kabir', 86),
+(7, '8107', 'Mr. Teacher ICT', 'teacherICT@gmail.com', 'Lecturer', 'ICT', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Islam', 'Mrs. Islam', 87),
+(8, '8108', 'Mr. Teacher World Knowledge', 'teacherWK@gmail.com', 'Lecturer', 'World Knowledge', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Khan', 'Mrs. Khan', 88),
+(9, '8109', 'Teacher Home Economics', 'teacherHE@gmail.com', 'Lecturer', 'Home Economics', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Female', 'Muslim', '2010-01-01', 'Mr. Rahman', 'Mrs. Rahman', 89),
+(10, '8100', 'Mr. Teacher Agriculture', 'teacherA@gmail.com', 'Lecturer', 'Agriculture', '98/2,Dhanmondi. 32 Dhaka-1209', '5/2/1986', 'Male', 'Muslim', '2010-01-01', 'Mr. Alam', 'Mrs. Alam', 80);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `upload`
+--
+
+CREATE TABLE `upload` (
+  `upload_id` int(20) NOT NULL,
+  `assignment_id` int(20) NOT NULL,
+  `uploadfilename` varchar(50) NOT NULL,
+  `uploaddate` varchar(50) NOT NULL,
+  `student_id` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Indexes for dumped tables
@@ -540,6 +539,12 @@ ALTER TABLE `teacher`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `upload`
+--
+ALTER TABLE `upload`
+  ADD PRIMARY KEY (`upload_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -590,6 +595,12 @@ ALTER TABLE `superadmin`
 --
 ALTER TABLE `teacher`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `upload`
+--
+ALTER TABLE `upload`
+  MODIFY `upload_id` int(20) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
