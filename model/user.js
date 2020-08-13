@@ -3,7 +3,6 @@ var db = require('./db');
 module.exports = {
 	
 	login: function(user, callback){
-		//var sql = "select * from student where email=? and password=?";
 		var sql = "select * from student where studentemail=?";
 		db.getResults(sql, [user.email], function(result){
 

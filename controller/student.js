@@ -7,9 +7,28 @@ var user = {};
 
 router.get('/stdash', function(req, res){
 
-	if(req.session.user != null){
+	if(req.session.sid != null){
 		studentdash.notice(req.session.sid,function(result){
 		res.render('student/stdash', {
+			name: req.session.name,
+            image: req.session.image,
+            event: result[0],
+            notice: result[1] 
+             });
+		})
+	}else{
+			console.log('going from studentjs');
+			res.redirect('/studentlogin');
+	}
+});
+
+/*router.get('/stdash', function(req, res){
+
+	if(req.session.sid != null){
+		studentdash.notice(req.session.sid,function(result){
+		res.render('student/stdash', {
+            req.session.name:result[2].studentname,
+            req.session.image:result[2].studentimage
 			name: req.session.name,
             image: req.session.image,
             event: result[0],
@@ -20,11 +39,11 @@ router.get('/stdash', function(req, res){
 			console.log('going from stufentjs');
 			res.redirect('/studentlogin');
 	}
-});
+});*/
 
 router.get('/teacher', function(req, res){
 
-	if(req.session.user != null){
+	if(req.session.sid != null){
 		studentdash.teacher(user,function(result){
 		res.render('student/teacher', {
 			name: req.session.name,
@@ -39,7 +58,7 @@ router.get('/teacher', function(req, res){
 });
 router.get('/stprofile', function(req, res){
 
-	if(req.session.user != null){
+	if(req.session.sid != null){
 		studentdash.profile(req.session.sid,function(result){
 		res.render('student/stprofile', {
 			name: req.session.name,
@@ -52,15 +71,18 @@ router.get('/stprofile', function(req, res){
 			res.redirect('/student/stdash');
 	}
 });
-/*router.get('/updateprofile', function(req, res){
 
-	if(req.session.user != null){
-		studentdash.profile(req.session.user,function(results){
+
+router.get('/updateprofile', function(req, res){
+
+	if(req.session.sid != null){
+		studentdash.profile(req.session.sid,function(result){
 		res.render('student/updateprofile', {
+			
 			name: req.session.name,
             image: req.session.image,
-            profile: results 
-             });
+            profile: result 
+			});
 		})
 	}else{
 			console.log('going from stufentjs');
@@ -72,7 +94,8 @@ router.post("/updateprofile", function(req, res){
 
 	var user = {
 		name: req.body.name,
-		image: req.body.image,
+		fathername: req.body.fathername,
+		mothername: req.body.mothername,
 		phone: req.body.phone,
 		address: req.body.address,
 		id: req.session.sid
@@ -85,11 +108,12 @@ router.post("/updateprofile", function(req, res){
 			res.redirect('/student/updateprofile');
 		}
 	});
-});*/
+});
+
 
 router.get('/routine', function(req, res){
 
-	if(req.session.user != null){
+	if(req.session.sid != null){
 		studentdash.routine(req.session.sid,function(result){
 		res.render('student/routine', {
 			name: req.session.name,
@@ -108,7 +132,7 @@ router.get('/routine', function(req, res){
 });
 router.get('/subject', function(req, res){
 
-	if(req.session.user != null){
+	if(req.session.sid != null){
 		studentdash.subject(req.session.sid,function(result){
 		res.render('student/subject', {
 			name: req.session.name,
@@ -122,7 +146,7 @@ router.get('/subject', function(req, res){
 });
 router.get('/found', function(req, res){
 
-	if(req.session.user != null){
+	if(req.session.sid != null){
 		studentdash.lostfound(req.session.sid,function(result){
 		res.render('student/found', {
 			name: req.session.name,
@@ -136,7 +160,7 @@ router.get('/found', function(req, res){
 });
 router.get('/syllabus', function(req, res){
 
-	if(req.session.user != null){
+	if(req.session.sid != null){
 		studentdash.syllabus(req.session.sid,function(result){
 		res.render('student/syllabus', {
 			name: req.session.name,
@@ -148,5 +172,69 @@ router.get('/syllabus', function(req, res){
 			res.redirect('/student/stdash');
 	}
 });
+router.get('/notes', function(req, res){
+
+	if(req.session.sid != null){
+		studentdash.notes(req.session.sid,function(result){
+		res.render('student/notes', {
+			name: req.session.name,
+            image: req.session.image,
+            notes: result 
+             });
+		})
+	}else{
+			res.redirect('/student/stdash');
+	}
+});
+router.get('/assignment', function(req, res){
+
+	if(req.session.sid != null){
+		studentdash.assignment(req.session.sid,function(result){
+		res.render('student/assignment', {
+			name: req.session.name,
+			image: req.session.image,
+			assignment: result[0],
+			upload: result[1]  
+            });
+		})
+	}else{
+			res.redirect('/student/stdash');
+	}
+});
+router.post("/upload/(:id)", function(req, res){
+	var assignment=req.params.id;
+	var file= req.files.file;
+	var filename= file.name;
+	file.mv('./assets/file/'+filename,function(err){})
+		
+	var user = {
+		id: assignment,
+		sid: req.session.sid,
+		file: filename
+	};
+	studentdash.upload(user, function(status){
+
+		if(status){
+			res.redirect('/student/assignment');
+		}else{
+			res.redirect('/student/assignment');
+		}
+	});		
+});
+router.get('/generatepdf', function(req, res){
+
+	if(req.session.sid != null){
+		studentdash.graderesult(req.session.sid,function(result){
+		res.render('student/generatepdf', {
+			name: req.session.name,
+            image: req.session.image,
+            grade: result 
+            });
+		})
+	}else{
+			res.redirect('/student/stdash');
+	}
+});
+
 
 module.exports = router;

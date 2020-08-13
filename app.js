@@ -5,8 +5,10 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var login  = require('./controller/login');
 var student = require('./controller/student');
+var upload= require('express-fileupload');
 var app    = express();
 
+app.use(upload());
 //view engine set, config
 app.set('view engine', 'ejs');
 
