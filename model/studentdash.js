@@ -25,7 +25,7 @@ module.exports = {
 		})
 	},
 	teacher: function(user, callback){
-		var sql = "SELECT * FROM teacher";
+		var sql = "SELECT * FROM teacher ";
 		db.getResults(sql,user, function(result){
 
 			if(result.length > 0 ){
